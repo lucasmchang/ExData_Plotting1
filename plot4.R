@@ -6,26 +6,25 @@ two_days <- data[data$Date == as.Date("2007-02-01") | data$Date == as.Date("2007
 
 #Create plot 4
 with(two_days, {
-    par(mfrow = c(2,2), mar = c(4,4,1,2))
+    png(file = 'plot4.png')
+    par(mfrow = c(2,2), mar = c(6,4,4,2))
     
     plot(Time, Global_active_power, type = 'l', 
-         ylab="Global Active Power (kilowatts)", xlab = "",  cex.main = 0.9, cex.axis = 0.9, cex.lab = 0.9)
+         ylab="Global Active Power", xlab = "")
     
     plot(Time, Voltage, type = 'l', 
-         ylab="Voltage", xlab = "datetime",  cex.main = 0.9, cex.axis = 0.9, cex.lab = 0.9)
+         ylab="Voltage", xlab = "datetime")
     
     plot(Time, pmax(two_days$Sub_metering_1, two_days$Sub_metering_2, two_days$Sub_metering_3), type = 'n',
-         ylab="Energy sub metering", xlab = "",  cex.main = 0.9, cex.axis = 0.9, cex.lab = 0.9)
+         ylab="Energy sub metering", xlab = "" )
     points(Time, Sub_metering_1, type = 'l')
     points(Time, Sub_metering_2, type = 'l', col = 'red')
     points(Time, Sub_metering_3, type = 'l', col = 'blue')
-    legend("topright" , legend = c("Sub_metering_1","Sub_metering_2","Sub_metering_3" ), col = c('black', 'red', "blue"), lty = 1, 
-           cex = 0.9, bty = 'n')
+    legend("topright", legend = c("Sub_metering_1","Sub_metering_2","Sub_metering_3" ), col = c('black', 'red', "blue"), lty = 1, 
+           bty = 'n')
     
     plot(Time, Global_reactive_power, type = 'l', 
-         xlab = "datetime",  cex.main = 0.9, cex.axis = 0.9, cex.lab = 0.9)
-    
-    dev.copy(png, file = 'plot4.png')
+         xlab = "datetime" )
     dev.off()
 })
 

@@ -6,9 +6,10 @@ two_days <- data[data$Date == as.Date("2007-02-01") | data$Date == as.Date("2007
 
 #Create plot 2
 with(two_days, {
+    png(file = 'plot2.png')
+    par(mfrow = c(1,1))
     plot(Time, Global_active_power, type = 'l', 
-         ylab="Global Active Power (kilowatts)", xlab = "",  cex.main = 0.9, cex.axis = 0.9, cex.lab = 0.9)
-    dev.copy(png, file = 'plot2.png')
+         ylab="Global Active Power (kilowatts)", xlab = "")
     dev.off()
 })
 
